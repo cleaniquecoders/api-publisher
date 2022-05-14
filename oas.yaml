@@ -1,0 +1,112 @@
+openapi: 3.0.3
+
+info:
+  title: "Open API Specification"
+  description: "Your API descriptions"
+  version: 1.0.0
+  contact:
+    name: API Support
+    url: http://www.example.com/support
+    email: support@example.com
+
+servers:
+- url: https://127.0.0.1:3000
+  description: Mocking server
+- url: https://api-publisher.test/api/v1
+  description: Development server
+- url: https://api.oas.staging
+  description: Staging server
+- url: https://api.oas.production
+  description: Production server
+  
+security:
+  - bearerAuth: []
+	
+paths:
+  /user/{email}:
+    get:
+      tags:
+        - User
+      summary: Returns user information based on email address
+      parameters:
+        - in: path
+          name: email   
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User Profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /user:
+    get:
+      tags:
+        - User
+      summary: Returns user list
+      responses:
+        '200':
+          description: Return list of users
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized Access
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+components: 
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      description: "This API uses OAuth 2 with the implicit grant flow."
+      name: X-API-KEY
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    Version:
+      name: Accept
+      in: header
+      description: API Version Using Header
+      required: false
+      style: simple
+      explode: false
+      schema:
+        type: string
+        example: 'application/vnd.oas.std.v1+json'
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Description of the error.
+        status:
+          type: integer
+          description: HTTP Status Code
+    User:
+      description: User Information
+      type: object
+      properties:
+        uid:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426614174000
+        name:
+          type: string
+          example: Nasrul Hazim
+        email:
+          type: string
+          example: nasrul@cleaniquecoders.com

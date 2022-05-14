@@ -1,0 +1,116 @@
+{
+  "uuid": "5cb2be90-7256-4f13-9761-5f43b9c92b6a",
+  "lastMigration": 19,
+  "name": "Open API Specification",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3000,
+  "hostname": "0.0.0.0",
+  "routes": [
+    {
+      "uuid": "7845abae-e227-4be8-ad77-402b824e3ee9",
+      "documentation": "Returns user information based on email address",
+      "method": "get",
+      "endpoint": "user/:email",
+      "responses": [
+        {
+          "uuid": "940b3115-50e4-4852-a52f-cfacce645da1",
+          "body": "{\n  \"uid\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"name\": \"Nasrul Hazim\",\n  \"email\": \"nasrul@cleaniquecoders.com\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "User Profile",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "93a992ff-c098-4ec8-9e7c-56afca280a04",
+      "documentation": "Returns user list",
+      "method": "get",
+      "endpoint": "user",
+      "responses": [
+        {
+          "uuid": "4a5c48f0-b49f-4dbf-8bd6-51d76104d70d",
+          "body": "[\n  {\n    \"uid\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"name\": \"Nasrul Hazim\",\n    \"email\": \"nasrul@cleaniquecoders.com\"\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Return list of users",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "4e7aa63f-288a-4dd1-9e8f-6436dd7fd636",
+          "body": "{\n  \"message\": \"\",\n  \"status\": {{faker 'random.number'}}\n}",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "Unauthorized Access",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ]
+}

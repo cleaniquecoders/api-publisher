@@ -1,0 +1,123 @@
+{
+  "uuid": "bb7e5c30-57c8-4d37-9141-faf28858fd0f",
+  "lastMigration": 19,
+  "name": "Open API Specification",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3000,
+  "hostname": "0.0.0.0",
+  "routes": [
+    {
+      "uuid": "bc69e2c8-ed84-4fb5-b88e-3b84b87c4b99",
+      "documentation": "Returns user information based on email address",
+      "method": "get",
+      "endpoint": "user/:email",
+      "responses": [
+        {
+          "uuid": "aeff5a6e-e575-496f-b7ce-aea56dccc9fc",
+          "body": "{\n  \"uid\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"name\": \"{{faker 'name.firstName'}} {{faker 'name.lastName'}}\",\n  \"email\": \"{{faker 'internet.email'}}\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "User Profile",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "6c68ba75-4902-4503-a434-58e32a74fc78",
+      "documentation": "Returns user list",
+      "method": "get",
+      "endpoint": "user",
+      "responses": [
+        {
+          "uuid": "df518bfc-5e49-4a84-89d5-18b80e166ed8",
+          "body": "{\n  \"data\": [\n    {{#repeat 100}}\n    {\n      \"uid\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"name\": \"{{faker 'name.firstName'}} {{faker 'name.lastName'}}\",\n      \"email\": \"{{faker 'internet.email'}}\"\n    }\n    {{/repeat}}\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Return list of users",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Authorization",
+              "value": "Bearer 123",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "026d34a5-cdd9-4a25-b71c-e203c3f94711",
+          "body": "{\n  \"message\": \"\",\n  \"status\": {{faker 'random.number'}}\n}",
+          "latency": 0,
+          "statusCode": 401,
+          "label": "Unauthorized Access",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ]
+}
