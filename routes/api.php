@@ -19,5 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::middleware('auth:sanctum')->get('/v1/user/{email}', [UserController::class, 'show']);
+Route::middleware('auth:sanctum')->get('/v1/user/{email}', [UserController::class, 'show']);
 Route::middleware('auth:sanctum')->get('/v1/user', [UserController::class, 'index']);
